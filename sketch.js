@@ -1,5 +1,6 @@
 var widthX;
 var heightY;
+var speed = .5;
 var circleX = 0;
 var circleY = 300;
 var col = {
@@ -13,14 +14,22 @@ function setup() {
 }
 
 function draw() {  
-    circleX =  circleX + .5;
-    circleX = circleX + mouseX*.2;
+    circleX =  circleX + speed;
+    circleY = circleY + speed;
     widthX = mouseX - mouseY;
     heightY = mouseY - mouseX;
-    ellipse(mouseX, circleY, widthX, mouseY);
-    col.r =  map(widthX, 0, width, 0, 255);
-    col.g =  map(mouseY, 0, height, 0, 55);
-    col.b =  map(widthX, 0, width, 255, 0);
-    stroke(col.r, col.g, col.b, 120);
-    fill(col.r, col.g, col.b, 0);
+    ellipse (circleX, circleY, mouseX, mouseY);
+    fill(0,0,0,0);
+    stroke
+    if (circleX < 0 || circleX > width) {
+        speed = -.5;
+    }
+    if (circleY < 0 || circleY > height) {
+        speed = -.1;
+    }
+    if(mouseX < 750 && mouseX > 250) {
+        stroke(255, 0, 100, 75);
+    }  else {
+        stroke(100, 0, 255, 75);
+    }
 }
